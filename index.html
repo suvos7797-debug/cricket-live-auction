@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#0b1220">
+  <title>Cricket Live Auction</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="topbar">
+    <div>
+      <h1>🏏 Cricket Live Auction</h1>
+      <div class="sub">3 Teams • 24 Players • Live Bidding</div>
+    </div>
+    <div id="connection" class="pill">Connecting…</div>
+  </header>
+
+  <main class="wrap">
+    <section id="joinCard" class="card">
+      <h2>Join Auction</h2>
+      <p class="muted">Use the same room code on every phone.</p>
+      <label>Room code
+        <input id="roomInput" value="auction1" autocomplete="off" maxlength="24">
+      </label>
+      <label>Your name
+        <input id="nameInput" placeholder="e.g. Sourav" maxlength="30" autocomplete="name">
+      </label>
+      <label>Your role
+        <select id="roleInput">
+          <option value="team">Team</option>
+          <option value="auctioneer">Auctioneer</option>
+        </select>
+      </label>
+      <div id="teamChooserWrap">
+        <label>Your team
+          <select id="teamInput">
+            <option value="Team A">Team A</option>
+            <option value="Team B">Team B</option>
+            <option value="Team C">Team C</option>
+          </select>
+        </label>
+      </div>
+      <button id="joinBtn" class="primary big">Enter Auction</button>
+      <p class="tiny">For a private event. Anyone who has the room link can interact with the shared auction.</p>
+    </section>
+
+    <section id="app" hidden>
+      <div class="toolbar card">
+        <div>
+          <strong id="roomLabel">Room</strong>
+          <span id="userLabel" class="muted"></span>
+        </div>
+        <div class="actions">
+          <button id="copyLinkBtn" class="secondary">Copy invite link</button>
+          <button id="leaveBtn" class="danger">Leave</button>
+        </div>
+      </div>
+
+      <section class="teams" id="teams"></section>
+
+      <section class="card hero">
+        <div class="sectionTitle">
+          <div>
+            <span id="auctionStatus" class="status">Waiting</span>
+            <h2 id="playerName">No player selected</h2>
+            <div id="playerMeta" class="muted"></div>
+          </div>
+          <div class="priceBox">
+            <div class="muted">Current bid</div>
+            <div id="currentBid">₹0</div>
+            <div id="highestTeam" class="muted">No bids</div>
+          </div>
+        </div>
+
+        <div class="bidArea">
+          <div id="nextBidText" class="nextBid">Next bid: ₹500</div>
+          <button id="bidBtn" class="bidBtn">BID ₹500</button>
+        </div>
+
+        <div id="hostControls" class="hostControls" hidden>
+          <button id="startBtn" class="primary">Start / Resume</button>
+          <button id="sellBtn" class="success">SOLD</button>
+          <button id="unsoldBtn" class="secondary">UNSOLD</button>
+          <button id="nextBtn" class="secondary">Next Player</button>
+          <button id="resetBtn" class="danger">Reset Auction</button>
+        </div>
+      </section>
+
+      <section class="card">
+        <div class="sectionTitle">
+          <h2>Player list</h2>
+          <span id="progress" class="pill">0 / 24</span>
+        </div>
+        <div id="players" class="players"></div>
+      </section>
+
+      <section class="card">
+        <h2>My team / roster</h2>
+        <div id="myRoster" class="roster"></div>
+      </section>
+
+      <section class="card">
+        <h2>Live activity</h2>
+        <div id="activity" class="activity"></div>
+      </section>
+    </section>
+  </main>
+
+  <div id="toast" class="toast" aria-live="polite"></div>
+
+  <script type="module" src="app.js"></script>
+</body>
+</html>
